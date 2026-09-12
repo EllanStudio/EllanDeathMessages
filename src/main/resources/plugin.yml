@@ -1,0 +1,16 @@
+name: EllanDeathMessages
+version: 1.0.0
+main: com.ellanstudio.deathmessages.EllanDeathMessagesPlugin
+api-version: '1.21'
+author: EllanStudio
+description: Component-based death messages that preserve CraftEngine item names.
+softdepend: [CMI]
+commands:
+  ellandeath:
+    description: Manage Ellan death messages.
+    usage: /ellandeath <reload|status|test>
+    aliases: [edm]
+permissions:
+  ellandeath.admin:
+    description: Manage Ellan death messages.
+    default: op

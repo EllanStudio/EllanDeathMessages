@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ellanstudio'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:26.2.build.123-stable'
+    compileOnly 'net.kyori:adventure-text-minimessage:4.24.0'
+    compileOnly 'net.kyori:adventure-text-serializer-gson:4.24.0'
+
+    testImplementation 'io.papermc.paper:paper-api:26.2.build.123-stable'
+    testImplementation 'net.kyori:adventure-text-minimessage:4.24.0'
+    testImplementation platform('org.junit:junit-bom:5.14.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 25
+}
+
+tasks.named('jar') {
+    archiveBaseName = 'EllanDeathMessages'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

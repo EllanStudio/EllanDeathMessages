@@ -1,0 +1,124 @@
+# EllanDeathMessages
+# This plugin replaces the vanilla PlayerDeathEvent message with Adventure Components.
+# CraftEngine item_name/custom_name components are preserved and resolved by the client.
+
+enabled: true
+prefix: '<#78828F>[<#D98E8E>☠<#78828F>] <#FFFFFF>'
+
+settings:
+  # Broadcast a death on all backend servers through Redis.
+  cross-server: true
+  # -1 broadcasts globally. A positive value limits broadcasts to that block radius.
+  # Cross-server broadcast is automatically disabled while a positive range is used.
+  broadcast-range: -1
+  # The victim still sees their own message when anti-spam suppresses the broadcast.
+  send-victim-own-message: true
+  send-to-console: true
+  # If a category has no messages, leave the original vanilla message untouched.
+  fallback-to-vanilla: true
+  anti-spam:
+    enabled: true
+    seconds: 30
+    count: 3
+  disabled-worlds: []
+  # Players in these worlds do not receive death broadcasts.
+  muted-worlds: []
+  # Deaths of these players are never announced.
+  ignored-players: []
+
+redis:
+  enabled: true
+  host: 127.0.0.1
+  port: 6379
+  password: ''
+  database: 0
+  channel: 'ellan:death-messages'
+
+# Available placeholders:
+# <player> - player who died
+# <killer> - player or living entity that caused the death
+# <mob> - living entity that caused the death
+# <item> - weapon or item that caused the death
+# <direct> - direct projectile or damage entity
+# <world> - world name
+# <cause> - damage type translation component
+messages:
+  player_general:
+    - '<#8FD3C7><player> <#C7CBD1>被 <killer> <#C7CBD1>送去打复活赛了'
+    - '<#8FD3C7><player> <#C7CBD1>与 <killer> <#C7CBD1>进行了激烈交流，然后掉线了'
+    - '<#8FD3C7><player> <#C7CBD1>触发了 <killer> <#C7CBD1>的隐藏连招'
+  player_item:
+    - '<#8FD3C7><player> <#C7CBD1>被 <killer> <#C7CBD1>用 <item> <#C7CBD1>严肃教育了'
+    - '<#8FD3C7><player> <#C7CBD1>表示 <item> <#C7CBD1>一点都不疼，随后当场去世'
+    - '<#8FD3C7><player> <#C7CBD1>被 <killer> <#C7CBD1>的 <item> <#C7CBD1>物理劝退'
+  player_projectile:
+    - '<#8FD3C7><player> <#C7CBD1>被 <killer> <#C7CBD1>用 <direct> <#C7CBD1>八百里外精准点名'
+    - '<#8FD3C7><player> <#C7CBD1>参加了 <direct> <#C7CBD1>速度测试，成绩：复活'
+  mob_general:
+    - '<#8FD3C7><player> <#C7CBD1>被 <mob> <#C7CBD1>送去打复活赛'
+    - '<#8FD3C7><player> <#C7CBD1>触发了 <mob> <#C7CBD1>的“你已被选中”成就'
+    - '<#8FD3C7><player> <#C7CBD1>被 <mob> <#C7CBD1>当场做成节目效果'
+  mob_item:
+    - '<#8FD3C7><player> <#C7CBD1>被 <mob> <#C7CBD1>用 <item> <#C7CBD1>物理劝退'
+    - '<#8FD3C7><player> <#C7CBD1>装备再好，也没防住 <mob> <#C7CBD1>的 <item>'
+  mob_projectile:
+    - '<#8FD3C7><player> <#C7CBD1>被 <mob> <#C7CBD1>的 <direct> <#C7CBD1>远距离点名'
+    - '<#8FD3C7><player> <#C7CBD1>在 <mob> <#C7CBD1>的弹幕里完成了抽象实验'
+  projectile:
+    - '<#8FD3C7><player> <#C7CBD1>被 <direct> <#C7CBD1>精准点名'
+    - '<#8FD3C7><player> <#C7CBD1>没躲开 <direct>，节目效果拉满'
+  explosion:
+    - '<#8FD3C7><player> <#C7CBD1>触发了 Minecraft 的祖传特性'
+    - '<#8FD3C7><player> <#C7CBD1>真的燃起来了，也真的炸了'
+  fall:
+    - '<#8FD3C7><player> <#C7CBD1>落地姿势：不太标准'
+    - '<#8FD3C7><player> <#C7CBD1>体验了免费跳楼机，评价：没有下次'
+  fire:
+    - '<#8FD3C7><player> <#C7CBD1>已经开始燃起来了（物理）'
+    - '<#8FD3C7><player> <#C7CBD1>被点燃，热度比服务器还高'
+  lava:
+    - '<#8FD3C7><player> <#C7CBD1>在岩浆里测试了水质，评价：很烫'
+    - '<#8FD3C7><player> <#C7CBD1>以为岩浆是暖手宝，结果真是暖手宝'
+  drowning:
+    - '<#8FD3C7><player> <#C7CBD1>在水下申请呼吸，审核未通过'
+    - '<#8FD3C7><player> <#C7CBD1>和海洋进行了一次深呼吸比赛，输了'
+  freeze:
+    - '<#8FD3C7><player> <#C7CBD1>被冻成了赛博冰棍'
+    - '<#8FD3C7><player> <#C7CBD1>成功申请了低温休眠'
+  void:
+    - '<#8FD3C7><player> <#C7CBD1>掉出了世界，正在加载虚空 DLC'
+    - '<#8FD3C7><player> <#C7CBD1>试图走出服务器，结果走出了人生'
+  lightning:
+    - '<#8FD3C7><player> <#C7CBD1>被雷公点名，无法拒绝'
+    - '<#8FD3C7><player> <#C7CBD1>获得了天降高压电体验券'
+  cactus:
+    - '<#8FD3C7><player> <#C7CBD1>和仙人掌进行了亲密接触，双方均表示后悔'
+    - '<#8FD3C7><player> <#C7CBD1>试图拥抱仙人掌，仙人掌拒绝了'
+  berry:
+    - '<#8FD3C7><player> <#C7CBD1>被甜浆果背刺，甜里藏刀'
+  campfire:
+    - '<#8FD3C7><player> <#C7CBD1>在营火前表演了铁板自己'
+    - '<#8FD3C7><player> <#C7CBD1>被灵魂营火收走了最后一点抽象值'
+  anvil:
+    - '<#8FD3C7><player> <#C7CBD1>被铁砧实施物理超度'
+    - '<#8FD3C7><player> <#C7CBD1>体验了从天而降的 KPI'
+  stalactite:
+    - '<#8FD3C7><player> <#C7CBD1>被坠落的滴水石锥精准点名'
+  stalagmite:
+    - '<#8FD3C7><player> <#C7CBD1>被石笋精准爆头，建议以后看路'
+  starvation:
+    - '<#8FD3C7><player> <#C7CBD1>由于忘带外卖，含泪退场'
+  suffocation:
+    - '<#8FD3C7><player> <#C7CBD1>和方块融为一体，成了建筑的一部分'
+    - '<#8FD3C7><player> <#C7CBD1>在墙里完成了空间压缩实验'
+  magic:
+    - '<#8FD3C7><player> <#C7CBD1>被魔法效果当场整活'
+    - '<#8FD3C7><player> <#C7CBD1>没学会魔法，先学会了复活'
+  wither:
+    - '<#8FD3C7><player> <#C7CBD1>被凋零效果做到掉线'
+  sonic_boom:
+    - '<#8FD3C7><player> <#C7CBD1>被监守者的声波送出了服务器'
+    - '<#8FD3C7><player> <#C7CBD1>体验了全服静音，代价有点大'
+  generic:
+    - '<#8FD3C7><player> <#C7CBD1>离奇去世，死因：不好说'
+    - '<#8FD3C7><player> <#C7CBD1>已老实，求放过'
