@@ -17,11 +17,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'io.papermc.paper:paper-api:26.2.build.123-stable'
+    compileOnly 'io.papermc.paper:paper-api:26.3.build.157-beta'
     compileOnly 'net.kyori:adventure-text-minimessage:4.24.0'
     compileOnly 'net.kyori:adventure-text-serializer-gson:4.24.0'
 
-    testImplementation 'io.papermc.paper:paper-api:26.2.build.123-stable'
+    testImplementation 'io.papermc.paper:paper-api:26.3.build.157-beta'
     testImplementation 'net.kyori:adventure-text-minimessage:4.24.0'
     testImplementation platform('org.junit:junit-bom:5.14.3')
     testImplementation 'org.junit.jupiter:junit-jupiter'
